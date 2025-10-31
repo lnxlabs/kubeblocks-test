@@ -9,7 +9,7 @@ spec:
   project: default
   source:
     repoURL: https://apecloud.github.io/helm-charts
-    chart: redis
+    chart: kubeblocks/redis
     targetRevision: 1.0.1
   destination:
     server: https://kubernetes.default.svc
