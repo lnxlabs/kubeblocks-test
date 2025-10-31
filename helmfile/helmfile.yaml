@@ -1,0 +1,41 @@
+repositories:
+  - name: apecloud
+    url: https://apecloud.github.io/helm-charts
+
+releases:
+  # 1. KubeBlocks Core Operator
+  - name: kubeblocks
+    namespace: kubeblocks-system
+    chart: apecloud/kubeblocks
+    version: 1.0.1
+    createNamespace: true
+    wait: true
+    timeout: 600
+    values:
+      - dataprotection:
+          enabled: false
+      - addonController:
+          enabled: false
+      - autoInstalledAddons: []
+
+  # 2. Redis Addon
+  - name: redis-addon
+    namespace: kubeblocks-system
+    chart: apecloud/redis
+    version: 1.0.1
+    createNamespace: false
+    wait: true
+    timeout: 300
+    needs:
+      - kubeblocks-system/kubeblocks
+
+  # 3. RabbitMQ Addon
+  - name: rabbitmq-addon
+    namespace: kubeblocks-system
+    chart: apecloud/rabbitmq
+    version: 1.0.1
+    createNamespace: false
+    wait: true
+    timeout: 300
+    needs:
+      - kubeblocks-system/kubeblocks

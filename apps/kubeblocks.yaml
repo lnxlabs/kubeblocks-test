@@ -16,6 +16,10 @@ spec:
       values: |
         dataprotection:
           enabled: false
+        addonController:
+          enabled: false
+        autoInstalledAddons: []
+        
   destination:
     server: https://kubernetes.default.svc
     namespace: kubeblocks-system
