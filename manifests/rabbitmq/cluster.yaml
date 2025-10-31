@@ -1,0 +1,27 @@
+apiVersion: apps.kubeblocks.io/v1
+kind: Cluster
+metadata:
+  name: rabbitmq-cluster
+  namespace: data
+spec:
+  terminationPolicy: Delete
+  clusterDef: rabbitmq
+  topology: clustermode
+  componentSpecs:
+    - name: rabbitmq
+      serviceVersion: 3.13.7
+      replicas: 1
+      resources:
+        requests:
+          cpu: 100m
+          memory: 256Mi
+        limits:
+          cpu: 300m
+          memory: 512Mi
+      volumeClaimTemplates:
+        - name: data
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 1Gi

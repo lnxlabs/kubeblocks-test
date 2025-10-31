@@ -1,0 +1,27 @@
+apiVersion: apps.kubeblocks.io/v1
+kind: Cluster
+metadata:
+  name: redis-cluster
+  namespace: data
+spec:
+  terminationPolicy: Delete
+  clusterDef: redis
+  topology: standalone
+  componentSpecs:
+    - name: redis
+      serviceVersion: 7.2.4
+      replicas: 1
+      resources:
+        requests:
+          cpu: 50m
+          memory: 128Mi
+        limits:
+          cpu: 200m
+          memory: 256Mi
+      volumeClaimTemplates:
+        - name: data
+          spec:
+            accessModes: ["ReadWriteOnce"]
+            resources:
+              requests:
+                storage: 1Gi

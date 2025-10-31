@@ -1,0 +1,20 @@
+apiVersion: argoproj.io/v1alpha1
+kind: Application
+metadata:
+  name: redis-addon
+  namespace: argocd
+  annotations:
+    argocd.argoproj.io/sync-wave: "1"
+spec:
+  project: default
+  source:
+    repoURL: https://apecloud.github.io/helm-charts
+    chart: redis
+    targetRevision: 1.0.1
+  destination:
+    server: https://kubernetes.default.svc
+    namespace: kubeblocks-system
+  syncPolicy:
+    automated:
+      prune: true
+      selfHeal: true
