@@ -8,9 +8,11 @@ metadata:
 spec:
   project: default
   source:
-    repoURL: https://github.com/apecloud/kubeblocks/releases/download/v1.0.1/kubeblocks-crds.yaml
-    targetRevision: HEAD
-    chart: ""
+    repoURL: https://github.com/lnxlabs/kubeblocks-test.git
+    targetRevision: main
+    path: manifests/crds
+    directory:
+      recurse: true
   destination:
     server: https://kubernetes.default.svc
     namespace: kubeblocks-system
