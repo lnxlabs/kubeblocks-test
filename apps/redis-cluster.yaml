@@ -13,8 +13,10 @@ spec:
     targetRevision: main
   destination:
     server: https://kubernetes.default.svc
-    namespace: demo
+    namespace: data
   syncPolicy:
     automated:
       prune: true
       selfHeal: true
+    syncOptions:
+      - CreateNamespace=true
