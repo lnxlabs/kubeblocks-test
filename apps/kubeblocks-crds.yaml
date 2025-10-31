@@ -1,16 +1,16 @@
 apiVersion: argoproj.io/v1alpha1
 kind: Application
 metadata:
-  name: kubeblocks
+  name: kubeblocks-crds
   namespace: argocd
   annotations:
-    argocd.argoproj.io/sync-wave: "0"
+    argocd.argoproj.io/sync-wave: "-1"
 spec:
   project: default
   source:
-    repoURL: https://apecloud.github.io/helm-charts
-    chart: kubeblocks/kubeblocks
-    targetRevision: 1.0.1
+    repoURL: https://github.com/apecloud/kubeblocks/releases/download/v1.0.1/kubeblocks-crds.yaml
+    targetRevision: HEAD
+    chart: ""
   destination:
     server: https://kubernetes.default.svc
     namespace: kubeblocks-system
