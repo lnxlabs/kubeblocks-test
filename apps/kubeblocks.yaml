@@ -11,6 +11,11 @@ spec:
     repoURL: https://apecloud.github.io/helm-charts
     chart: kubeblocks
     targetRevision: 1.0.1
+    helm:
+      releaseName: kubeblocks
+      values: |
+        dataprotection:
+          enabled: false
   destination:
     server: https://kubernetes.default.svc
     namespace: kubeblocks-system
